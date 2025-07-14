@@ -138,9 +138,23 @@ export default function KeyGeneration() {
                 <p className="mt-1 text-xs text-gray-500">Higher values are more secure but slower</p>
               </div>
 
-              <Button type="submit" className="w-full" disabled={isGenerating}>
-                <Key className="mr-2 h-4 w-4" />
-                {isGenerating ? "Generating..." : "Generate Key Pair"}
+              <Button 
+                type="submit" 
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:transform-none disabled:bg-gray-400 disabled:cursor-not-allowed" 
+                disabled={isGenerating}
+                size="lg"
+              >
+                {isGenerating ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Key className="mr-2 h-5 w-5" />
+                    🔑 Generate Key Pair
+                  </>
+                )}
               </Button>
             </form>
 
@@ -215,13 +229,19 @@ export default function KeyGeneration() {
                 </div>
 
                 <div className="flex space-x-3">
-                  <Button onClick={handleDownloadKeys} className="flex-1 bg-green-600 hover:bg-green-700">
+                  <Button 
+                    onClick={handleDownloadKeys} 
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
+                  >
                     <Download className="mr-2 h-4 w-4" />
-                    Download Keys
+                    💾 Download Keys
                   </Button>
-                  <Button onClick={handleSaveKeys} className="flex-1">
+                  <Button 
+                    onClick={handleSaveKeys} 
+                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
+                  >
                     <Save className="mr-2 h-4 w-4" />
-                    Save to Browser
+                    🗄️ Save to Browser
                   </Button>
                 </div>
               </div>

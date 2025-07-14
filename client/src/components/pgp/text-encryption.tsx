@@ -104,9 +104,12 @@ export default function TextEncryption() {
                 id="recipientKey"
                 value={encryptData.recipientKey}
                 onChange={(e) => setEncryptData(prev => ({ ...prev, recipientKey: e.target.value }))}
-                className="h-24 text-xs font-mono"
+                className={`h-24 text-xs font-mono ${encryptData.recipientKey.trim() ? 'border-green-300 bg-green-50' : 'border-gray-300'}`}
                 placeholder="Paste the recipient's public key here..."
               />
+              {!encryptData.recipientKey.trim() && (
+                <p className="mt-1 text-xs text-amber-600">⚠️ Public key required to encrypt messages</p>
+              )}
             </div>
 
             <div>
@@ -115,22 +118,35 @@ export default function TextEncryption() {
                 id="plaintextMessage"
                 value={encryptData.message}
                 onChange={(e) => setEncryptData(prev => ({ ...prev, message: e.target.value }))}
-                className="h-40 resize-none"
+                className={`h-40 resize-none ${encryptData.message.trim() ? 'border-green-300 bg-green-50' : 'border-gray-300'}`}
                 placeholder="Type your message here..."
               />
               <div className="mt-1 text-xs text-gray-500 flex justify-between">
                 <span>This message will be encrypted and can only be read by the recipient</span>
-                <span>{encryptData.message.length} characters</span>
+                <span className={`${encryptData.message.length === 0 ? 'text-amber-600' : 'text-green-600'}`}>
+                  {encryptData.message.length} characters
+                  {encryptData.message.length === 0 && ' (message required)'}
+                </span>
               </div>
             </div>
 
             <Button 
               onClick={handleEncrypt} 
-              className="w-full" 
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:transform-none disabled:bg-gray-400 disabled:cursor-not-allowed" 
               disabled={isEncrypting || !encryptData.recipientKey.trim() || !encryptData.message.trim()}
+              size="lg"
             >
-              <Lock className="mr-2 h-4 w-4" />
-              {isEncrypting ? "Encrypting..." : "Encrypt Message"}
+              {isEncrypting ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  Encrypting...
+                </>
+              ) : (
+                <>
+                  <Lock className="mr-2 h-5 w-5" />
+                  🔒 Encrypt Message
+                </>
+              )}
             </Button>
 
             {encryptedResult && (
@@ -209,11 +225,21 @@ export default function TextEncryption() {
 
             <Button 
               onClick={handleDecrypt} 
-              className="w-full bg-green-600 hover:bg-green-700" 
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:transform-none disabled:bg-gray-400 disabled:cursor-not-allowed" 
               disabled={isDecrypting || !decryptData.privateKey.trim() || !decryptData.encryptedMessage.trim()}
+              size="lg"
             >
-              <Unlock className="mr-2 h-4 w-4" />
-              {isDecrypting ? "Decrypting..." : "Decrypt Message"}
+              {isDecrypting ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  Decrypting...
+                </>
+              ) : (
+                <>
+                  <Unlock className="mr-2 h-5 w-5" />
+                  🔓 Decrypt Message
+                </>
+              )}
             </Button>
 
             {decryptedResult && (
