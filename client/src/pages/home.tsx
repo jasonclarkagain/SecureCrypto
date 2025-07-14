@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, HelpCircle, Settings } from "lucide-react";
+import { Shield, HelpCircle, Settings as SettingsIcon, Cog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import KeyGeneration from "@/components/pgp/key-generation";
@@ -14,7 +14,7 @@ export default function Home() {
     { id: "generate", label: "Generate Keys", icon: <Shield className="mr-2 h-4 w-4" />, component: <KeyGeneration /> },
     { id: "text", label: "Text Encryption", icon: <span className="mr-2 text-lg">📝</span>, component: <TextEncryption /> },
     { id: "files", label: "File Encryption", icon: <span className="mr-2 text-lg">📄</span>, component: <FileEncryption /> },
-    { id: "keys", label: "Key Management", icon: <Settings className="mr-2 h-4 w-4" />, component: <KeyManagement /> }
+    { id: "keys", label: "Key Management", icon: <SettingsIcon className="mr-2 h-4 w-4" />, component: <KeyManagement /> }
   ];
 
   return (
@@ -28,11 +28,11 @@ export default function Home() {
               <h1 className="text-xl font-bold text-gray-900">PGP Crypter</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
+              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700" title="Help & Documentation">
                 <HelpCircle className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
-                <Settings className="h-5 w-5" />
+              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700" title="Settings">
+                <Cog className="h-5 w-5" />
               </Button>
             </div>
           </div>
@@ -78,6 +78,24 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="text-center text-gray-600">
+            Made with <span className="text-red-500">♥</span> by{" "}
+            <a 
+              href="https://jason-clark.org" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >
+              Jason Clark
+            </a>
+            !
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
