@@ -43,56 +43,58 @@ export default function Home() {
         </Alert>
 
         {/* Navigation Tabs */}
-        <div className="bg-white rounded-lg shadow-sm mb-8 border border-gray-200">
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <Tabs defaultValue="generate" className="w-full">
-            <div className="border-b border-gray-200">
-              <TabsList className="grid w-full grid-cols-4 bg-white h-auto p-0 rounded-none">
-                <TabsTrigger 
-                  value="generate" 
-                  className="flex items-center justify-center py-4 px-6 text-sm font-medium text-gray-600 hover:text-gray-900 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-600 rounded-none bg-transparent"
-                >
-                  <Shield className="mr-2 h-4 w-4" />
-                  Generate Keys
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="text"
-                  className="flex items-center justify-center py-4 px-6 text-sm font-medium text-gray-600 hover:text-gray-900 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-600 rounded-none bg-transparent"
-                >
-                  <span className="mr-2 text-lg">📝</span>
-                  Text Encryption
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="files"
-                  className="flex items-center justify-center py-4 px-6 text-sm font-medium text-gray-600 hover:text-gray-900 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-600 rounded-none bg-transparent"
-                >
-                  <span className="mr-2 text-lg">📄</span>
-                  File Encryption
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="keys"
-                  className="flex items-center justify-center py-4 px-6 text-sm font-medium text-gray-600 hover:text-gray-900 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-600 rounded-none bg-transparent"
-                >
-                  <Settings className="mr-2 h-4 w-4" />
-                  Key Management
-                </TabsTrigger>
-              </TabsList>
+            {/* Tab Navigation */}
+            <TabsList className="w-full h-auto bg-white border-b border-gray-200 rounded-none p-0 grid grid-cols-4">
+              <TabsTrigger 
+                value="generate" 
+                className="relative flex items-center justify-center py-4 px-6 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 data-[state=active]:text-blue-600 data-[state=active]:bg-blue-50 data-[state=active]:border-b-2 data-[state=active]:border-blue-500 rounded-none border-b-2 border-transparent transition-all"
+              >
+                <Shield className="mr-2 h-4 w-4" />
+                Generate Keys
+              </TabsTrigger>
+              <TabsTrigger 
+                value="text"
+                className="relative flex items-center justify-center py-4 px-6 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 data-[state=active]:text-blue-600 data-[state=active]:bg-blue-50 data-[state=active]:border-b-2 data-[state=active]:border-blue-500 rounded-none border-b-2 border-transparent transition-all"
+              >
+                <span className="mr-2 text-lg">📝</span>
+                Text Encryption
+              </TabsTrigger>
+              <TabsTrigger 
+                value="files"
+                className="relative flex items-center justify-center py-4 px-6 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 data-[state=active]:text-blue-600 data-[state=active]:bg-blue-50 data-[state=active]:border-b-2 data-[state=active]:border-blue-500 rounded-none border-b-2 border-transparent transition-all"
+              >
+                <span className="mr-2 text-lg">📄</span>
+                File Encryption
+              </TabsTrigger>
+              <TabsTrigger 
+                value="keys"
+                className="relative flex items-center justify-center py-4 px-6 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 data-[state=active]:text-blue-600 data-[state=active]:bg-blue-50 data-[state=active]:border-b-2 data-[state=active]:border-blue-500 rounded-none border-b-2 border-transparent transition-all"
+              >
+                <Settings className="mr-2 h-4 w-4" />
+                Key Management
+              </TabsTrigger>
+            </TabsList>
+
+            {/* Tab Content */}
+            <div className="relative">
+              <TabsContent value="generate" className="mt-0 border-0 p-0 focus-visible:ring-0">
+                <KeyGeneration />
+              </TabsContent>
+
+              <TabsContent value="text" className="mt-0 border-0 p-0 focus-visible:ring-0">
+                <TextEncryption />
+              </TabsContent>
+
+              <TabsContent value="files" className="mt-0 border-0 p-0 focus-visible:ring-0">
+                <FileEncryption />
+              </TabsContent>
+
+              <TabsContent value="keys" className="mt-0 border-0 p-0 focus-visible:ring-0">
+                <KeyManagement />
+              </TabsContent>
             </div>
-
-            <TabsContent value="generate" className="p-0">
-              <KeyGeneration />
-            </TabsContent>
-
-            <TabsContent value="text" className="p-0">
-              <TextEncryption />
-            </TabsContent>
-
-            <TabsContent value="files" className="p-0">
-              <FileEncryption />
-            </TabsContent>
-
-            <TabsContent value="keys" className="p-0">
-              <KeyManagement />
-            </TabsContent>
           </Tabs>
         </div>
       </main>
