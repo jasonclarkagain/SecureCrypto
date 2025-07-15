@@ -1,20 +1,37 @@
 import { useState } from "react";
-import { Shield, HelpCircle, Settings as SettingsIcon, Cog } from "lucide-react";
+import { Shield, HelpCircle, Settings as SettingsIcon, Cog, Zap, Archive, Search, FileText, Activity, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import KeyGeneration from "@/components/pgp/key-generation";
 import TextEncryption from "@/components/pgp/text-encryption";
 import FileEncryption from "@/components/pgp/file-encryption";
 import KeyManagement from "@/components/pgp/key-management";
+import BatchProcessor from "@/components/pgp/batch-processor";
+import MessageSigning from "@/components/pgp/message-signing";
+import BackupRecovery from "@/components/pgp/backup-recovery";
+import AdvancedSearch from "@/components/pgp/advanced-search";
+import MessageTemplates from "@/components/pgp/message-templates";
+import SecurityAudit from "@/components/pgp/security-audit";
+import KeyExpiration from "@/components/pgp/key-expiration";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("generate");
 
   const tabs = [
+    // Core Features
     { id: "generate", label: "Generate Keys", icon: <Shield className="mr-2 h-4 w-4" />, component: <KeyGeneration /> },
     { id: "text", label: "Text Encryption", icon: <span className="mr-2 text-lg">📝</span>, component: <TextEncryption /> },
     { id: "files", label: "File Encryption", icon: <span className="mr-2 text-lg">📄</span>, component: <FileEncryption /> },
-    { id: "keys", label: "Key Management", icon: <SettingsIcon className="mr-2 h-4 w-4" />, component: <KeyManagement /> }
+    { id: "keys", label: "Key Management", icon: <SettingsIcon className="mr-2 h-4 w-4" />, component: <KeyManagement /> },
+    
+    // Advanced Features
+    { id: "batch", label: "Batch Processing", icon: <Zap className="mr-2 h-4 w-4" />, component: <BatchProcessor /> },
+    { id: "signing", label: "Message Signing", icon: <span className="mr-2 text-lg">✍️</span>, component: <MessageSigning /> },
+    { id: "backup", label: "Backup & Recovery", icon: <Archive className="mr-2 h-4 w-4" />, component: <BackupRecovery /> },
+    { id: "search", label: "Advanced Search", icon: <Search className="mr-2 h-4 w-4" />, component: <AdvancedSearch /> },
+    { id: "templates", label: "Message Templates", icon: <FileText className="mr-2 h-4 w-4" />, component: <MessageTemplates /> },
+    { id: "audit", label: "Security Audit", icon: <Activity className="mr-2 h-4 w-4" />, component: <SecurityAudit /> },
+    { id: "expiration", label: "Key Expiration", icon: <Calendar className="mr-2 h-4 w-4" />, component: <KeyExpiration /> }
   ];
 
   return (
