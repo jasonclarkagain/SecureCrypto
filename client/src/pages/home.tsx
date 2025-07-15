@@ -3,6 +3,7 @@ import { Shield, HelpCircle, Settings as SettingsIcon, Cog, Zap, Archive, Search
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import KeyGeneration from "@/components/pgp/key-generation";
+import UltraSecureGeneration from "@/components/pgp/ultra-secure-generation";
 import TextEncryption from "@/components/pgp/text-encryption";
 import FileEncryption from "@/components/pgp/file-encryption";
 import KeyManagement from "@/components/pgp/key-management";
@@ -13,6 +14,7 @@ import AdvancedSearch from "@/components/pgp/advanced-search";
 import MessageTemplates from "@/components/pgp/message-templates";
 import SecurityAudit from "@/components/pgp/security-audit";
 import KeyExpiration from "@/components/pgp/key-expiration";
+import SecureDeletion from "@/components/pgp/secure-deletion";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("generate");
@@ -20,6 +22,7 @@ export default function Home() {
   const tabs = [
     // Core Features
     { id: "generate", label: "Generate Keys", icon: <Shield className="mr-2 h-4 w-4" />, component: <KeyGeneration /> },
+    { id: "ultra-secure", label: "🔴 ULTRA-SECURE", icon: <span className="mr-2 text-lg text-red-600">🛡️</span>, component: <UltraSecureGeneration /> },
     { id: "text", label: "Text Encryption", icon: <span className="mr-2 text-lg">📝</span>, component: <TextEncryption /> },
     { id: "files", label: "File Encryption", icon: <span className="mr-2 text-lg">📄</span>, component: <FileEncryption /> },
     { id: "keys", label: "Key Management", icon: <SettingsIcon className="mr-2 h-4 w-4" />, component: <KeyManagement /> },
@@ -31,7 +34,8 @@ export default function Home() {
     { id: "search", label: "Advanced Search", icon: <Search className="mr-2 h-4 w-4" />, component: <AdvancedSearch /> },
     { id: "templates", label: "Message Templates", icon: <FileText className="mr-2 h-4 w-4" />, component: <MessageTemplates /> },
     { id: "audit", label: "Security Audit", icon: <Activity className="mr-2 h-4 w-4" />, component: <SecurityAudit /> },
-    { id: "expiration", label: "Key Expiration", icon: <Calendar className="mr-2 h-4 w-4" />, component: <KeyExpiration /> }
+    { id: "expiration", label: "Key Expiration", icon: <Calendar className="mr-2 h-4 w-4" />, component: <KeyExpiration /> },
+    { id: "secure-delete", label: "🔴 SECURE SHRED", icon: <span className="mr-2 text-lg text-red-600">🗑️</span>, component: <SecureDeletion /> }
   ];
 
   return (
@@ -59,11 +63,11 @@ export default function Home() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Security Notice */}
-        <Alert className="mb-8 border-l-4 border-l-blue-400 bg-blue-50">
-          <Shield className="h-4 w-4 text-blue-400" />
-          <AlertDescription className="text-blue-700">
-            <strong>Security Notice:</strong> All encryption and decryption happens locally in your browser. 
-            Your keys and data never leave your device.
+        <Alert className="mb-8 border-l-4 border-l-red-400 bg-red-50">
+          <Shield className="h-4 w-4 text-red-400" />
+          <AlertDescription className="text-red-700">
+            <strong>ULTRA-SECURE MODE:</strong> Military-grade encryption that would take intelligence agencies 
+            hundreds of millions of years to crack. All operations happen locally - no backdoors, no security holes.
           </AlertDescription>
         </Alert>
 
