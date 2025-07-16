@@ -16,8 +16,9 @@ build/
 .env.production.local
 
 # Database
-*.sqlite
 *.db
+*.sqlite
+*.sqlite3
 
 # Logs
 logs/
@@ -50,7 +51,10 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
-# parcel-bundler cache (https://parceljs.org/)
+# dotenv environment variables file
+.env
+
+# Parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
 
@@ -65,12 +69,6 @@ jspm_packages/
 
 # Serverless directories
 .serverless
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
 
 # IDE files
 .vscode/
@@ -88,17 +86,29 @@ jspm_packages/
 ehthumbs.db
 Thumbs.db
 
+# Replit specific
+.replit
+.upm
+replit.nix
+
+# Security files (if any test keys are generated)
+*.key
+*.pem
+*.p12
+*.pfx
+
 # Temporary files
+tmp/
+temp/
 *.tmp
-*.temp
+
+# Package manager lock files (optional - you may want to commit these)
+# package-lock.json
+# yarn.lock
 
 # Drizzle
 drizzle/
+.drizzle/
 
-# Test results
-test-results.md
-comprehensive-test.js
-
-# Replit specific
-.replit
-replit.nix
+# Vite
+.vite/
